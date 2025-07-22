@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.ManyToOne;
@@ -38,6 +39,7 @@ public class Vehicles {
     // Union desde vehiculos a un workshop
     @ManyToOne
     @JoinColumn(name = "WORKSHOP_ID", nullable = false)
+    @JsonBackReference
     private Workshops workshop;
 
     //Union desde vehiculos a varias partes

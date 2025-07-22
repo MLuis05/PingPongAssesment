@@ -43,8 +43,18 @@ public class WorkshopService {
     
     //Endpoint deleting a workshop
     public String deleteWorkshopById(Long Id){
-        workshopsRepository.deleteById(Id);
-        return "The workshop with id " + Id + " has been deleted";
+        Workshops workshop = workshopsRepository.findById(Id).orElse(null);
+        if(workshop == null) {
+            return "Workshop with ID " + Id + " not found";
+        } else {
+            if(workshop.getVehicles().size() != 0) {
+                // Clear the vehicles list to remove the relationship
+                return "The workshop with id " + Id + " could not be deleted because it has associated vehicles.";
+            } else {
+                workshopsRepository.deleteById(Id);
+                return "The workshop with id " + Id + " has been deleted";
+            }
+        }
     }
 
     //Endpoint to Edit a workshop

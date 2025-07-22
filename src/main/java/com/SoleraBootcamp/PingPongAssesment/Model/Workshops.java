@@ -3,6 +3,7 @@ package com.SoleraBootcamp.PingPongAssesment.Model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,6 @@ public class Workshops {
     private String description;
 
     @OneToMany(mappedBy = "workshop")
-    @JsonIgnore
+    @JsonManagedReference
     List<Vehicles> vehicles;
 }
