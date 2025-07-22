@@ -25,6 +25,7 @@ public class Workshops {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long workshopId;
+    @NotBlank(message = "Add a NAME")
     @Size(min = 2, max = 200, message = "Name must be between 2 and 200 characters")
     private String name;
     @NotBlank(message = "A Description should be add.")

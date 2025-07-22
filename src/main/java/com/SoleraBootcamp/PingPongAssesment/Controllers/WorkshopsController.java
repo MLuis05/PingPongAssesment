@@ -31,33 +31,38 @@ public class WorkshopsController {
 
     // Endpoint to create a new workshop
     @PostMapping("/workshops")
-    public String createWorkshop(@RequestBody Workshops workShop) {
-        return workshopService.createWorkshop(workShop);
+    ResponseEntity<String> createWorkshop(@Valid @RequestBody Workshops workShop) {
+        String result = workshopService.createWorkshop(workShop); 
+        return ResponseEntity.status(201).body(result);
     }
     
     
     // Endpoint to get a workshop by ID
     @GetMapping("/workshops/{id}")
-    public String getWorkshop(@PathVariable(value="id") Long Id){
-        return workshopService.getWorkshop(Id);
+    public ResponseEntity<String> getWorkshop(@PathVariable(value="id") Long Id){
+        String result = workshopService.getWorkshop(Id); 
+        return ResponseEntity.status(200).body(result);
     }
 
     //Endpoint to get all workshops
     @GetMapping("/allworkshops")
-    public List<Workshops> getAllWorkshops() {
-        return workshopService.getAllWorkshops();
+    public ResponseEntity<List<Workshops>> getAllWorkshops() {
+        List<Workshops> result = workshopService.getAllWorkshops(); 
+        return ResponseEntity.status(200).body(result);
     }
     
     //Endpoint deleting a workshop
     @DeleteMapping("/workshops/{id}")
-    public String deleteWorkshopById(@PathVariable(value="id") Long Id){
-        return workshopService.deleteWorkshopById(Id);
+    public ResponseEntity<String> deleteWorkshopById(@PathVariable(value="id") Long Id){
+        String result = workshopService.deleteWorkshopById(Id); 
+        return ResponseEntity.status(200).body(result);
     }
 
     //Endpoint to Edit a workshop
     @PutMapping("workshops/{id}")
-    public String editWorkshopById(@Valid @RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
-        return workshopService.editWorkshopById(workshop, Id);
+    public ResponseEntity<String> editWorkshopById(@Valid @RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
+        String result = workshopService.editWorkshopById(workshop, Id); 
+        return ResponseEntity.status(200).body(result);
     }
     
 }

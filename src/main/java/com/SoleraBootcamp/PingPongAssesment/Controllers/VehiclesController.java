@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,33 +36,38 @@ public class VehiclesController {
 
     // Endpoint to create a new workshop
     @PostMapping("/vehicles")
-    public String createVehicle(@Valid @RequestBody Vehicles vehicle) {
-        return vehiclesService.createVehicle(vehicle);
+    ResponseEntity<String> createVehicle(@Valid @RequestBody Vehicles vehicle) {
+        String result = vehiclesService.createVehicle(vehicle); 
+        return ResponseEntity.status(201).body(result);
     }
     
     //Endpoint to get a vehicle by ID
     @GetMapping("/vehicles/{id}")
-    public Vehicles getVehicle(@PathVariable(value="id") Long Id) {
-        return vehiclesService.getVehicle(Id);
+    ResponseEntity<Vehicles> getVehicle(@PathVariable(value="id") Long Id) {
+        Vehicles result = vehiclesService.getVehicle(Id); 
+        return ResponseEntity.status(200).body(result);
     }
 
     //Endpoint to get all vehicles
     @GetMapping("/allvehicles")
     public List<Vehicles> getAllVehicles() {
-        return vehiclesService.getAllVehicles();
+        Vehicles result = (Vehicles) vehiclesService.getAllVehicles(); 
+        return (List<Vehicles>) ResponseEntity.status(200).body(result);
     }
 
     //Endpoint to delete a vehicle by ID
     @DeleteMapping("/vehicles/{id}")
-    public String deleteVehicleById(@PathVariable(value="id") Long Id) {
-        return vehiclesService.deleteVehicleById(Id);
+    public ResponseEntity<String> deleteVehicleById(@PathVariable(value="id") Long Id) {
+        String result = vehiclesService.deleteVehicleById(Id); 
+        return ResponseEntity.status(201).body(result);
 
     }
 
     //Endpoint to edit a vehicle by ID
     @PutMapping("/vehicles/{id}")
-    public String updateVehicleById(@RequestBody Vehicles vehicleDetails, @PathVariable(value="id") Long Id) {
-                return vehiclesService.updateVehicleById(vehicleDetails, Id);
+    public ResponseEntity<String> updateVehicleById(@RequestBody Vehicles vehicleDetails, @PathVariable(value="id") Long Id) {
+        String result = vehiclesService.updateVehicleById(vehicleDetails, Id); 
+        return ResponseEntity.status(200).body(result);
     }
 
 }

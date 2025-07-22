@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
 import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
+import com.SoleraBootcamp.PingPongAssesment.Repository.WorkshopsRepository;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
@@ -15,17 +16,29 @@ import jakarta.validation.Valid;
 public class VehiclesService {
 
     private final VehiclesRepository vehiclesRepository;
+    private final WorkshopsRepository workshopsRepository;
 
-
-
-    public VehiclesService(VehiclesRepository repository){
-        vehiclesRepository = repository;
-    }
+    public VehiclesService(VehiclesRepository vehiclesRepository, WorkshopsRepository workshopsRepository){
+    this.vehiclesRepository = vehiclesRepository;
+    this.workshopsRepository = workshopsRepository;
+}
 
     // Endpoint to create a new vehicle
     public String createVehicle(@Valid @RequestBody Vehicles vehicle) {
+        if (vehicle.getWorkshop() == null || vehicle.getWorkshop().getWorkshopId() == null){
+            return "Workshop is requires and must have a valid ID";
+        }
+
+        // Buscar el workshop en la base de datos
+        Optional<com.SoleraBootcamp.PingPongAssesment.Model.Workshops> optionalWorkshop = workshopsRepository.findById(vehicle.getWorkshop().getWorkshopId());
+        if(optionalWorkshop.isEmpty()){
+            return "Workshop with ID " + vehicle.getWorkshop().getWorkshopId() + " does not exist"; 
+        }
+
+        vehicle.setWorkshop(optionalWorkshop.get());
         vehiclesRepository.save(vehicle);
-        return "The vehicle with the model " + vehicle.getModel() + " has been created";
+
+        return "The vehicle with the model " + vehicle.getModel()+ ", brand: " + vehicle.getBrand() + " has been created";
     }
     
     //Endpoint to get a vehicle by ID
