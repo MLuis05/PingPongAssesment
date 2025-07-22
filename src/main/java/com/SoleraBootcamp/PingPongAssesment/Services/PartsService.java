@@ -73,8 +73,18 @@ public class PartsService {
     
     //Endpoint deleting a part
     public String deletePartById(Long Id){
-        partsRepository.deleteById(Id);
-        return "The part with id " + Id + " has been deleted";
+        Parts part = partsRepository.findById(Id).orElse(null);
+        if(part == null) {
+            return "Part with ID " + Id + " not found";
+        } else {
+            if(part.getVehicles().size() != 0) {
+                // Clear the vehicles list to remove the relationship
+                return "The part with id " + Id + " could not be deleted because it has associated vehicles.";
+            } else {
+                partsRepository.deleteById(Id);
+                return "The part with id " + Id + " has been deleted";
+            }
+        }
     }
 
     //Endpoint to Edit a part

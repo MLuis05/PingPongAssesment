@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Workshops {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long workshopId;
+    @Size(min = 4, max = 200, message = "Workshop name must be between 4 and 200 characters")
     private String name;
     private String description;
 

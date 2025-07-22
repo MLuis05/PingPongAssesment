@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.SoleraBootcamp.PingPongAssesment.Services.WorkshopService;
 
+import jakarta.validation.Valid;
+
 
 
 @RestController
@@ -28,7 +30,7 @@ public class WorkshopsController {
 
     // Endpoint to create a new workshop
     @PostMapping("/workshops")
-    public String createWorkshop(@RequestBody Workshops workShop) {
+    public String createWorkshop(@Valid @RequestBody Workshops workShop) {
         return workshopService.createWorkshop(workShop);
     }
     

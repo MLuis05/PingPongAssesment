@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
 import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
+
 @Service
 public class VehiclesService {
 
@@ -19,8 +22,8 @@ public class VehiclesService {
         vehiclesRepository = repository;
     }
 
-    // Endpoint to create a new workshop
-    public String createVehicle( Vehicles vehicle) {
+    // Endpoint to create a new vehicle
+    public String createVehicle(@Valid @RequestBody Vehicles vehicle) {
         vehiclesRepository.save(vehicle);
         return "The vehicle with the model " + vehicle.getModel() + " has been created";
     }

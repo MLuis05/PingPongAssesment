@@ -8,6 +8,8 @@ import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
 import com.SoleraBootcamp.PingPongAssesment.Services.VehiclesService;
 import com.SoleraBootcamp.PingPongAssesment.Services.WorkshopService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +36,7 @@ public class VehiclesController {
 
     // Endpoint to create a new workshop
     @PostMapping("/vehicles")
-    public String createVehicle(@RequestBody Vehicles vehicle) {
+    public String createVehicle(@Valid @RequestBody Vehicles vehicle) {
         return vehiclesService.createVehicle(vehicle);
     }
     

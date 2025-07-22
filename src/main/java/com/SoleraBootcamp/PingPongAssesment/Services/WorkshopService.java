@@ -4,6 +4,8 @@ package com.SoleraBootcamp.PingPongAssesment.Services;
 import com.SoleraBootcamp.PingPongAssesment.Model.Workshops;
 import com.SoleraBootcamp.PingPongAssesment.Repository.WorkshopsRepository;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ public class WorkshopService {
     }
 
     // Endpoint to create a new workshop
-    public String createWorkshop(Workshops workShop) {
+    public String createWorkshop(@Valid Workshops workShop) {
         workshopsRepository.save(workShop);
         return "The workshop with name " + workShop.getName() + " has been created successfully.";
     }
