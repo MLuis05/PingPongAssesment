@@ -8,6 +8,7 @@ import com.SoleraBootcamp.PingPongAssesment.Model.Workshops;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,9 +31,10 @@ public class WorkshopsController {
 
     // Endpoint to create a new workshop
     @PostMapping("/workshops")
-    public String createWorkshop(@Valid @RequestBody Workshops workShop) {
+    public String createWorkshop(@RequestBody Workshops workShop) {
         return workshopService.createWorkshop(workShop);
     }
+    
     
     // Endpoint to get a workshop by ID
     @GetMapping("/workshops/{id}")
@@ -54,7 +56,7 @@ public class WorkshopsController {
 
     //Endpoint to Edit a workshop
     @PutMapping("workshops/{id}")
-    public String editWorkshopById(@RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
+    public String editWorkshopById(@Valid @RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
         return workshopService.editWorkshopById(workshop, Id);
     }
     
