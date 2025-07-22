@@ -3,11 +3,12 @@ package com.SoleraBootcamp.PingPongAssesment.Services;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.springframework.stereotype.Service;
 
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
 import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
 
+@Service
 public class VehiclesService {
 
     private final VehiclesRepository vehiclesRepository;

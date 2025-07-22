@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.springframework.stereotype.Service;
 
 import com.SoleraBootcamp.PingPongAssesment.Model.Parts;
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
 import com.SoleraBootcamp.PingPongAssesment.Repository.PartsRepository;
 import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
 
+@Service
 public class PartsService {
 
     private final PartsRepository partsRepository;
