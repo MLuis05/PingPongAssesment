@@ -37,13 +37,13 @@ public class VehiclesController {
     
     //Endpoint to get a vehicle by ID
     @GetMapping("/vehicles/{id}")
-    public String getVehicle(@PathVariable(value="id") Long Id) {
+    public Vehicles getVehicle(@PathVariable(value="id") Long Id) {
         Optional<Vehicles> optionalVehicle = vehiclesRepository.findById(Id);
         if(optionalVehicle.isEmpty()) {
-            return "Vehicle with ID " + Id + " not found";
+            return null; // or throw an exception
         } else {
             Vehicles vehicle = optionalVehicle.get();
-            return "Vehicle model found: " + vehicle.getModel();
+            return vehicle;
         }
     }
 
