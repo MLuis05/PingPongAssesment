@@ -50,9 +50,9 @@ public class VehiclesController {
 
     //Endpoint to get all vehicles
     @GetMapping("/allvehicles")
-    public List<Vehicles> getAllVehicles() {
-        Vehicles result = (Vehicles) vehiclesService.getAllVehicles(); 
-        return (List<Vehicles>) ResponseEntity.status(200).body(result);
+    public ResponseEntity<List<Vehicles>> getAllVehicles() {
+        List<Vehicles> result = vehiclesService.getAllVehicles();
+        return ResponseEntity.ok(result);
     }
 
     //Endpoint to delete a vehicle by ID

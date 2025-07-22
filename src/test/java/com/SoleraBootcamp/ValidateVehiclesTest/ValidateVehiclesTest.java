@@ -15,7 +15,7 @@ import com.SoleraBootcamp.PingPongAssesment.Model.Parts;
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
 import com.SoleraBootcamp.PingPongAssesment.Model.Workshops;
 
-import ValidateVehicles.ValidateVehicles;
+
 
 public class ValidateVehiclesTest {
 
