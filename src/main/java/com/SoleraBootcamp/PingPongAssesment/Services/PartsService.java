@@ -41,12 +41,15 @@ public class PartsService {
             vehicle.setParts(new ArrayList<>());
         }
 
+        // asociar antes de guardar
+        part.getVehicles().add(vehicle);
+
         // Guardar la parte primero
         Parts savedPart = partsRepository.save(part);
         
         // Agregar la relación bidireccional
         vehicle.getParts().add(savedPart);
-        savedPart.getVehicles().add(vehicle);
+        vehiclesRepository.save(vehicle);
         
         // Guardar ambos
         vehiclesRepository.save(vehicle);
