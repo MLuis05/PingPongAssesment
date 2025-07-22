@@ -1,0 +1,10 @@
+{
+    "model": "Rav4",
+    "brand": "Toyota",
+    "vehicleYear": "2018",
+    "color": "Azul",
+    "vin": "1HGBH41JXMN109186",
+    "workshop": {
+        "workshopId": 1
+    }
+}
