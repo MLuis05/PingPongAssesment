@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.SoleraBootcamp.PingPongAssesment.Services.WorkshopService;
 
+import jakarta.validation.Valid;
+
 
 
 @RestController
@@ -29,14 +31,12 @@ public class WorkshopsController {
 
     // Endpoint to create a new workshop
     @PostMapping("/workshops")
-    public ResponseEntity<String> createWorkshop(@RequestBody Workshops workShop) {
-        try{
-            String result = workshopService.createWorkshop(workShop);
-            return ResponseEntity.status(201).body(result);
-        } catch(Exception e){
-        return ResponseEntity.status(500).body("Internal Server Error: " + e.getMessage());
-        }
+    public ResponseEntity<String> createWorkshop(@Valid @RequestBody Workshops workShop) {
+        String result = workshopService.createWorkshop(workShop);
+        return ResponseEntity.status(201).body(result);
+        
     }
+    
     
     // Endpoint to get a workshop by ID
     @GetMapping("/workshops/{id}")
@@ -58,7 +58,7 @@ public class WorkshopsController {
 
     //Endpoint to Edit a workshop
     @PutMapping("workshops/{id}")
-    public String editWorkshopById(@RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
+    public String editWorkshopById(@Valid @RequestBody Workshops workshop, @PathVariable(value="id") Long Id) {
         return workshopService.editWorkshopById(workshop, Id);
     }
     
