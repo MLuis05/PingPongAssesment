@@ -1,10 +1,10 @@
 package com.SoleraBootcamp.PingPongAssesment.Repository;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.SoleraBootcamp.PingPongAssesment.Model.Workshops;
 
 @Repository
-public interface WorkshopsRepository extends CrudRepository<Workshops, Long> {
+public interface WorkshopsRepository extends JpaRepository<Workshops, Long> {
 
 }

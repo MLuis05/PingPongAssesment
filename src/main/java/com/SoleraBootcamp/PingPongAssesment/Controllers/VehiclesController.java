@@ -4,9 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SoleraBootcamp.PingPongAssesment.Model.Vehicles;
-import com.SoleraBootcamp.PingPongAssesment.Repository.VehiclesRepository;
 import com.SoleraBootcamp.PingPongAssesment.Services.VehiclesService;
-import com.SoleraBootcamp.PingPongAssesment.Services.WorkshopService;
 
 import jakarta.validation.Valid;
 

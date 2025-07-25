@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.SoleraBootcamp.PingPongAssesment.Model.Parts;
 import com.SoleraBootcamp.PingPongAssesment.Services.PartsService;
-import com.SoleraBootcamp.PingPongAssesment.Services.VehiclesService;
 
 import jakarta.validation.Valid;
 
@@ -23,13 +22,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/api")
 public class PartsController {
 
-    private final VehiclesService vehiclesService;
     private final PartsService partsService;
 
 
-    public PartsController(PartsService partsService, VehiclesService vehiclesService){
+    public PartsController(PartsService partsService){
         this.partsService = partsService;
-        this.vehiclesService = vehiclesService;
     }
 
     // Endpoint to create a new part
